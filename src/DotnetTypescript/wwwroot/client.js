@@ -1,0 +1,1 @@
+﻿var Components = require('expose?Components!./../app/main');

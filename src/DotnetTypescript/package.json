@@ -1,0 +1,58 @@
+{
+  "name": "dotnettypescript",
+  "version": "0.1.5",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drasticactions/dotnettypescript.git"
+  },
+  "author": "Tim Miller <innerlogic432@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drasticactions/dotnettypescript/issues"
+  },
+  "homepage": "https://github.com/drasticactions/dotnettypescript#readme",
+  "scripts": {
+    "install": "webpack",
+    "start": "dotnet run"
+  },
+  "engines": {
+    "node": ">=7.0.0",
+    "npm": ">=3.10.8"
+  },
+  "dependencies": {
+    "@types/dom4": "^1.5.20",
+    "body-parser": "^1.14.2",
+    "dom4": "^1.8.3",
+    "fetch": "^1.1.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "ts-loader": "^0.9.5",
+    "tslint": "^3.15.1",
+    "typescript": "2.0.10",
+    "typings": "^1.5.0",
+    "webpack": "^1.13.3"
+  },
+  "devDependencies": {
+    "@types/debug": "0.0.29",
+    "@types/isomorphic-fetch": "0.0.31",
+    "@types/react": "^0.14.43",
+    "@types/react-dom": "^0.14.18",
+    "@types/webpack": "^1.12.35",
+    "babel-polyfill": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "del": "^2.2.2",
+    "exports-loader": "^0.6.3",
+    "expose-loader": "^0.7.1",
+    "gulp": "^3.9.1",
+    "isomorphic-fetch": "^2.2.1",
+    "json-loader": "^0.5.4",
+    "mobx": "^2.7.0",
+    "mobx-react": "^4.0.3",
+    "mobx-react-devtools": "^4.2.10",
+    "react-bootstrap-table": "^2.6.0",
+    "style-loader": "^0.13.1",
+    "tslint-loader": "^2.1.5",
+    "webpack-stream": "^3.2.0"
+  }
+}
