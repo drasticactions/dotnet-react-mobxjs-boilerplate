@@ -1,3 +1,1 @@
-﻿module.exports = {
-	Index: require('./views/index')
-};
+﻿exports.Index = require('./views/index');
