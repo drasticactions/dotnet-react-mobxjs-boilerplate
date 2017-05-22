@@ -8,30 +8,16 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Session" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.0" />
-    <PackageReference Include="Microsoft.NETCore.App" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.0" />
-    <PackageReference Include="React.AspNet" Version="3.0.0-dev-20161215-0541" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Redouble.Aspnet.Webpack" Version="1.1.2" />
   </ItemGroup>
 </Project>

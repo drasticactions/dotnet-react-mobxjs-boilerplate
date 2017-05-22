@@ -1,29 +1,29 @@
 ﻿var path = require('path');
 var webpack = require('webpack');
-var nodeModulesPath = path.join(__dirname, 'node_modules');
+var WebpackNotifierPlugin = require('webpack-notifier');
+
 module.exports = {
-    context: path.join(__dirname, 'wwwroot'),
-    entry: {
-        server: './server',
-        client: './client'
+    context: path.join(__dirname, 'Scripts'),
+    entry: ['react-hot-loader/patch', 'webpack-aspnet-middleware/client', './index'],
+    devtool: 'source-map',
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
     output: {
-        path: path.join(__dirname, 'wwwroot/build'),
+        publicPath: '/webpack/',
+        path: path.join(__dirname, 'wwwroot', 'webpack'),
         filename: '[name].bundle.js'
     },
-    resolve: {
-        extensions: ['.js', '.ts', '.tsx']
-    },
     plugins: [
+        new WebpackNotifierPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.ProvidePlugin({
-            'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
-        }),
+        new webpack.NamedModulesPlugin(),
     ],
     module: {
         rules: [
-            { test: /\.tsx?$/, loaders: ['ts-loader'], include: path.join(__dirname, 'app') }
+            { test: /\.tsx?$/, use: ['react-hot-loader/webpack', 'ts-loader?transpileOnly=true'], exclude: /node_modules/ },
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] }
         ]
     }
 };
