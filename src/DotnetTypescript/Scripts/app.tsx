@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Router, Route, Link } from 'react-router';
+import { BrowserRouter as Router, Route, Link, withRouter } from 'react-router-dom';
 import { inject, observer } from "mobx-react";
 import LazyRoute from "lazy-route";
 import DevTools from "mobx-react-devtools";
@@ -7,25 +7,11 @@ import { AppState } from './appState';
 import Calculator from './Calculator/calculator'
 import TimerView from './Timer/timer'
 
-@inject('router')
-@inject('appState')
-@observer
-export class App extends React.Component< {router?: any, appState?: AppState} , {}> {
+@withRouter @inject('appState') @observer
+export class App extends React.Component< {appState?: AppState} , {}> {
     render() {
-        let { location } = this.props.router;
         return (<div>
-            <span>Current pathname: {location.pathname}</span>
-            <div>
-                <button onClick={this.goToTimer}>
-					Timer
-				</button>
-                <button onClick={this.goToCalculator}>
-					Calculator
-				</button>
-                <button onClick={this.goBack}>
-					Go Back
-				</button>
-            </div>
+            <DevTools />
             <Route
 					exact
 					path="/"
@@ -37,19 +23,4 @@ export class App extends React.Component< {router?: any, appState?: AppState} , 
 				/>
         </div>);
     }
-
-    goToCalculator = () => {
-        let { push } = this.props.router;
-        push('/calculator');
-	}
-
-    goToTimer = () => {
-		let { push } = this.props.router;
-        push('/');
-	}
-
-    goBack = () => {
-		let { goBack  } = this.props.router;
-        goBack();
-	}
 }
