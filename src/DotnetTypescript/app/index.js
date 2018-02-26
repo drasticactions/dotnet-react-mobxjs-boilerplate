@@ -1,1 +1,0 @@
-﻿exports.Index = require('./views/index');
