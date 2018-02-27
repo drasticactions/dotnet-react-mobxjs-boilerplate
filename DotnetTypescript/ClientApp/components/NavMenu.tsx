@@ -1,30 +1,37 @@
 import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { Nav, INavProps } from 'office-ui-fabric-react/lib/Nav';
+import { browserHistory } from 'react-router';
+import navigationStore from '../navigationStore';
 
 export class NavMenu extends React.Component<{}, {}> {
-    public render() {
-        return <div className='main-nav'>
-                <div className='navbar navbar-inverse'>
-                <div className='navbar-header'>
-                    <button type='button' className='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-                        <span className='sr-only'>Toggle navigation</span>
-                        <span className='icon-bar'></span>
-                        <span className='icon-bar'></span>
-                        <span className='icon-bar'></span>
-                    </button>
-                    <Link className='navbar-brand' to={ '/' }>DotnetTypescript</Link>
-                </div>
-                <div className='clearfix'></div>
-                <div className='navbar-collapse collapse'>
-                    <ul className='nav navbar-nav'>
-                        <li>
-                            <NavLink to={ '/' } exact activeClassName='active'>
-                                <span className='glyphicon glyphicon-home'></span> Home
-                            </NavLink>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>;
+    
+    constructor(props) {
+        super(props);
+        this.onClickHandler = this.onClickHandler.bind(this);
     }
+
+    public render() {
+        return <div className='nav'>  <Nav groups={[{
+            links: [
+              {
+                name: 'Home',
+                key: 'key1',
+                url: '/',
+                onClick: this.onClickHandler
+              },
+              {
+                name: 'Home Again',
+                key: 'key2',
+                url: '/again',
+                onClick: this.onClickHandler
+              }]
+          }]} /></div>;
+    }
+
+    private onClickHandler(e: any, element: any) {
+        e.preventDefault();
+        navigationStore.push(element.url);
+        return false;
+     }
 }

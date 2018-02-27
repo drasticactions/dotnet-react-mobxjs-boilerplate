@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavMenu } from './NavMenu';
-
+import DevTools from 'mobx-react-devtools';
 export interface LayoutProps {
     children?: React.ReactNode;
 }
@@ -16,6 +16,7 @@ export class Layout extends React.Component<LayoutProps, {}> {
                     { this.props.children }
                 </div>
             </div>
+            <DevTools/>
         </div>;
     }
 }

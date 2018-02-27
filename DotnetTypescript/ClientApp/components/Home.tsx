@@ -29,7 +29,6 @@ export class Home extends React.Component<{}, {}> {
                 <button onClick={this.onReset}>
                     Seconds passed: {this.appState.timer}
                 </button>
-                <DevTools />
             </div>
         );
     }
