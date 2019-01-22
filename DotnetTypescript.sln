@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27421.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28516.95
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetTypescript", "DotnetTypescript\DotnetTypescript.csproj", "{14FB18A8-A534-49C7-BE4C-0DCD1CF5DA16}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetTypescript", "DotnetTypescript\DotnetTypescript.csproj", "{852034A7-81C5-4EEF-91F2-B2F0583050E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{14FB18A8-A534-49C7-BE4C-0DCD1CF5DA16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14FB18A8-A534-49C7-BE4C-0DCD1CF5DA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14FB18A8-A534-49C7-BE4C-0DCD1CF5DA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14FB18A8-A534-49C7-BE4C-0DCD1CF5DA16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{852034A7-81C5-4EEF-91F2-B2F0583050E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{852034A7-81C5-4EEF-91F2-B2F0583050E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{852034A7-81C5-4EEF-91F2-B2F0583050E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{852034A7-81C5-4EEF-91F2-B2F0583050E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F7890A1C-2856-4716-B712-BE9D16DC7FE4}
+		SolutionGuid = {A6700EF7-16E7-4054-8C0D-6BDCB05C053F}
 	EndGlobalSection
 EndGlobal

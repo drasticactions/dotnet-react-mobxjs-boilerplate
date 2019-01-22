@@ -1,43 +1,108 @@
+/* eslint-disable */
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+const merge = require('webpack-merge');
 const bundleOutputDir = './wwwroot/dist';
 
-module.exports = (env) => {
-    const isDevBuild = !(env && env.prod);
-    return [{
+const isDebug = global.DEBUG === false ? false : !process.argv.includes('--release');
+
+const config = (isDebug) => {
+    const isDevBuild = isDebug;
+
+    // Configuration in common to both client-side and server-side bundles
+    const sharedConfig = () => ({
+        mode: isDevBuild ? 'development' : 'production',
         stats: { modules: false },
-        entry: { 'main': './ClientApp/boot.tsx' },
         resolve: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
         output: {
-            path: path.join(__dirname, bundleOutputDir),
             filename: '[name].js',
-            publicPath: 'dist/'
+            path: path.join(__dirname, bundleOutputDir),
+            publicPath: 'dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
         },
         module: {
             rules: [
-                { test: /\.tsx?$/, include: /ClientApp/, use: 'awesome-typescript-loader?silent=true' },
-                { test: /\.css$/, use: isDevBuild ? ['style-loader', 'css-loader'] : ExtractTextPlugin.extract({ use: 'css-loader?minimize' }) },
+                { test: /\.tsx?$/, include: /ClientApp/,
+                  use: [
+                    {
+                      loader: 'babel-loader',
+                      options: {
+                        babelrc: false,
+                        plugins: ['react-hot-loader/babel'],
+                      },
+                    },
+                    'awesome-typescript-loader?silent=true', // (or awesome-typescript-loader)
+                    ]
+                },
+                {
+                  test: /\.js$/,
+                  use: ["source-map-loader"],
+                  enforce: "pre"
+                },
                 { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' }
             ]
         },
+        plugins: [new CheckerPlugin()]
+    });
+
+    // Configuration for client-side bundle suitable for running in browsers
+    const clientBundleOutputDir = './wwwroot/dist';
+    const clientBundleConfig = merge(sharedConfig(), {
+        entry: { 'main': './ClientApp/boot.tsx' },
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                minimize: isDevBuild,
+                                sourceMap: isDevBuild
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        output: { path: path.join(__dirname, clientBundleOutputDir) },
         plugins: [
-            new CheckerPlugin(),
+          new MiniCssExtractPlugin({ filename: 'site.css' }),
+          new webpack.DllReferencePlugin({
+              context: __dirname,
+              manifest: require('./wwwroot/dist/vendor-manifest.json')
+          })
+        ],
+        optimization: {
+          minimize: !isDevBuild
+        },
+        devtool: isDevBuild ? 'inline-source-map' : 'source-map'
+    });
+
+     //Configuration for server-side (prerendering) bundle suitable for running in Node
+    const serverBundleConfig = merge(sharedConfig(), {
+        resolve: { mainFields: ['main'] },
+        entry: { 'main-server': './ClientApp/boot-server.tsx' },
+        plugins: [
             new webpack.DllReferencePlugin({
                 context: __dirname,
-                manifest: require('./wwwroot/dist/vendor-manifest.json')
+                manifest: require('./wwwroot/dist/server/vendor-manifest.json'),
+                sourceType: 'commonjs2',
+                name: './vendor'
             })
-        ].concat(isDevBuild ? [
-            // Plugins that apply in development builds only
-            new webpack.SourceMapDevToolPlugin({
-                filename: '[file].map', // Remove this line if you prefer inline source maps
-                moduleFilenameTemplate: path.relative(bundleOutputDir, '[resourcePath]') // Point sourcemap entries to the original file locations on disk
-            })
-        ] : [
-            // Plugins that apply in production builds only
-            new webpack.optimize.UglifyJsPlugin(),
-            new ExtractTextPlugin('site.css')
-        ])
-    }];
+        ],
+        output: {
+            libraryTarget: 'commonjs',
+            path: path.join(__dirname, 'wwwroot', 'dist', 'server')
+        },
+        target: 'node',
+        devtool: isDevBuild ? 'inline-source-map' : 'source-map'
+    });
+
+    return [clientBundleConfig, serverBundleConfig];
 };
+
+module.exports = config(isDebug);

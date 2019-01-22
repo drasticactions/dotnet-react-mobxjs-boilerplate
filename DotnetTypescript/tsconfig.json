@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false,
-    "removeComments": false,
-    "sourceMap": true,
+    "baseUrl": ".",
     "module": "commonjs",
-    "target": "es6",
     "moduleResolution": "node",
-    "types": [
-      "webpack-env"
-    ],
+    "target": "es5",
+    "jsx": "react",
     "experimentalDecorators": true,
-    "jsx": "react"
+    "sourceMap": true,
+    "skipDefaultLibCheck": true,
+    "strict": true,
+    "lib": ["es6", "dom"],
+    "types": ["webpack-env"],
+    "noImplicitAny": false
   },
   "exclude": [
-    "bin",
-    "node_modules"
+      "bin",
+      "node_modules"
   ]
 }
